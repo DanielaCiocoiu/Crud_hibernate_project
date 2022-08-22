@@ -30,3 +30,11 @@ EntityManager is similar to Hibernate SessionFactory
 caching
 security
 actuator
+
+
+
+
+spring.jpa.properties.hibernate.format_sql=true
+#Prima linie înregistreaz? interog?rile SQL, iar a doua instruc?iune înregistreaz? parametrii instruc?iunii preg?tite.
+logging.level.org.hibernate.SQL=DEBUG
+logging.level.org.hibernate.type.descriptor.sql.BasicBinder=TRACE
