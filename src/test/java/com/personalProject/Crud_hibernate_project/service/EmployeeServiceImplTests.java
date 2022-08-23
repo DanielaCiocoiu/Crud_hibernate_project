@@ -1,7 +1,6 @@
 package com.personalProject.Crud_hibernate_project.service;
 
 import com.personalProject.Crud_hibernate_project.dao.EmployeeDAO;
-import com.personalProject.Crud_hibernate_project.dao.EmployeeDAOHibernateImpl;
 import com.personalProject.Crud_hibernate_project.entity.Departament;
 import com.personalProject.Crud_hibernate_project.entity.Employee;
 import org.junit.jupiter.api.BeforeEach;
@@ -43,7 +42,8 @@ class EmployeeServiceImplTests {
     }
     @Test
     void getById() {
-        Optional<Employee> employee = employeeService.findById(2);
-        assertEquals(2, employee.get().getId());
+       Employee employee = employeeService.findById(2);
+        assertEquals(2, employee.getId());
     }
+
 }

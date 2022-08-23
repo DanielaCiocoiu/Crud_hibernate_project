@@ -3,6 +3,7 @@ package com.personalProject.Crud_hibernate_project.entity;
 import lombok.*;
 
 import javax.persistence.*;
+import java.util.Date;
 import java.util.Objects;
 
 @Entity
@@ -35,16 +36,20 @@ public class Employee {
     @Column(name = "departament")
     private Departament departament;
 
+    @Column(name="date_of_birth")
+    @Temporal(TemporalType.DATE)
+    private Date dateOfBirth;
+
     @Override
     public boolean equals(Object o) {
         if (this == o) return true;
         if (o == null || getClass() != o.getClass()) return false;
         Employee employee = (Employee) o;
-        return firstName.equals(employee.firstName) && lastName.equals(employee.lastName) && email.equals(employee.email) && departament == employee.departament;
+        return firstName.equals(employee.firstName) && lastName.equals(employee.lastName) && email.equals(employee.email) && departament == employee.departament && Objects.equals(dateOfBirth, employee.dateOfBirth);
     }
 
     @Override
     public int hashCode() {
-        return Objects.hash(firstName, lastName, email, departament);
+        return Objects.hash(firstName, lastName, email, departament, dateOfBirth);
     }
 }

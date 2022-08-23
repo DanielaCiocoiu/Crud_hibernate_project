@@ -4,11 +4,11 @@ package com.personalProject.Crud_hibernate_project.rest;
 import com.personalProject.Crud_hibernate_project.entity.Departament;
 import com.personalProject.Crud_hibernate_project.entity.Employee;
 import com.personalProject.Crud_hibernate_project.service.EmployeeService;
+import org.springframework.cache.annotation.Cacheable;
 import org.springframework.web.bind.annotation.*;
 
 import java.util.List;
-import java.util.Optional;
-import java.util.stream.Collectors;
+
 
 @RestController
 @RequestMapping("/api")
@@ -21,25 +21,30 @@ public class EmployeeRestController {
     }
 
     @GetMapping("/employees")
+    @Cacheable(value = "cacheStudent")
     public List<Employee> findAll() {
         return employeeService.findAll();
     }
 
     @GetMapping("/employees/{employeeId}")
-    public Optional<Employee> getEmployee(@PathVariable int employeeId) {
-        Optional<Employee> theEmployee = employeeService.findById(employeeId);
+    public Employee getEmployee(@PathVariable int employeeId) {
+        Employee theEmployee = employeeService.findById(employeeId);
+        if ((theEmployee == null) || (employeeId < 0)) {
+            throw new EmplyeeNotFoundException("Employee id not found - " + employeeId);
+        }
         return theEmployee;
     }
 
     //http://localhost:8080/api?departament=HR
     @GetMapping
-    public List<Employee> getEmployeeDepartament(@RequestParam(value="departament") Departament departament)  {
+    public List<Employee> getEmployeeDepartamentWithRequestParam(@RequestParam(value="departament") Departament departament)  {
 
-        List<Employee> theEmployee = employeeService.getEmployeeByDepartament(departament);
-        return theEmployee.stream()
-                .filter(employee -> employee.getDepartament()
-                        .equals(departament))
-                .collect(Collectors.toList());
+        return employeeService.getEmployeeByDepartament(departament);
+    }
+
+    @GetMapping("/{name}")
+    public List<Employee> getEmployeeDepartament(@PathVariable(name = "name") Departament departament) {
+        return employeeService.getEmployeeByDepartament(departament);
     }
 
     @PostMapping("/employees")
@@ -59,10 +64,9 @@ public class EmployeeRestController {
     @DeleteMapping("/employees/{employeeId}")
     public String deleteEmployee(@PathVariable int employeeId) {
 
-        Optional<Employee> tempEmployee = employeeService.findById(employeeId);
+        Employee tempEmployee = employeeService.findById(employeeId);
         employeeService.deleteById(employeeId);
         return "Deleted employee id - " + employeeId;
     }
-
 
 }

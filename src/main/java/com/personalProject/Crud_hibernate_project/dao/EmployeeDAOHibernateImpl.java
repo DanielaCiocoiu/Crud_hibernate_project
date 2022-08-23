@@ -33,11 +33,11 @@ public class EmployeeDAOHibernateImpl implements EmployeeDAO {
     }
 
     @Override
-    public Optional<Employee> findById(int theId) {
+    public Employee findById(int theId) {
         Session currentSession = entityManager.unwrap(Session.class);
         Employee theEmployee = currentSession.get(Employee.class, theId);
 
-        return Optional.ofNullable(theEmployee);
+        return theEmployee;
     }
 
     @Override
@@ -63,4 +63,5 @@ public class EmployeeDAOHibernateImpl implements EmployeeDAO {
         final  List<Employee>  employees = theQuery.getResultList();
         return employees;
     }
+
 }
