@@ -1,7 +1,7 @@
-package com.personalProject.Crud_hibernate_project.rest;
+package com.personalProject.Enterprise_employees_management_system.rest;
 
-import com.personalProject.Crud_hibernate_project.entity.Employee;
-import com.personalProject.Crud_hibernate_project.service.RestTemplateService;
+import com.personalProject.Enterprise_employees_management_system.entity.Employee;
+import com.personalProject.Enterprise_employees_management_system.service.RestTemplateService;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.http.ResponseEntity;
 import org.springframework.web.bind.annotation.*;
@@ -25,9 +25,16 @@ public class RestTemplateController {
         return restTemplateService.createEmployee(employee);
     }
 
+    //FIXME
+
     //   -  http://localhost:8080/RestTemplate/getEmployeeById/4
     @GetMapping("/getEmployeeById/{id}")
     public Employee getEmployeeById(@PathVariable int id) {
-        return restTemplateService.getEmployeeById(id);
+        return restTemplateService.updateEmployeeById(id);
+    }
+
+    @GetMapping("/deleteEmployeeById/{id}")
+    public Employee deleteEmployeeById(@PathVariable int id) {
+        return restTemplateService.deleteEmployeeById(id);
     }
 }

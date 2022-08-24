@@ -1,5 +1,5 @@
-Create a REST API for the Employee Directory
-REST clients should be able to
+Create a REST API for the Employees Management System
+REST clients for:
 • Get a list of employees
 • Get a single employee by id
 • Add a new employee
@@ -12,13 +12,21 @@ GET /api/employees/{employeeId} Read a single employee
 PUT /api/employees Update an existing employee
 DELETE /api/employees/{employeeId} Delete an existing employee
 
-1. Set up Database Dev Environment
-2. Create Spring Boot project using Spring Initializr
-3. Get list of employees
-4. Get single employee by ID
-5. Add a new employee
-6. Update an existing employee
-7. Delete an existing employee
+1.  Set up Database Dev Environment
+2.  Create Spring Boot project using Spring Initializr
+3.  Get list of employees
+4.  Get single employee by ID
+5.  Add a new employee
+6.  Update an existing employee
+7.  Delete an existing employee
+8.  Implementing  - Errors Handling
+9.  Implementing  - Actuators
+10. Implementing  - Unitary and Integration Test
+11  Caching  - TO DO
+12  Security - TO DO
+13  Advance Hibernate features - TO DO
+
+
 
 Rest controller-service-dao-mysql
 hibernate session factory
@@ -27,12 +35,6 @@ hibernate session factory
 EntityManager is similar to Hibernate SessionFactory
 • EntityManager can serve as a wrapper for a Hibernate Session object
 
-caching
-security
-actuator
-errors - exception handler method
-
-hibernate
 
 spring.jpa.properties.hibernate.format_sql=true
 #Prima linie înregistreaz? interog?rile SQL, iar a doua instruc?iune înregistreaz? parametrii instruc?iunii preg?tite.
@@ -77,8 +79,18 @@ Development Process
 
 {
 "firstName": "Ion",
-"lastName": "Miresleanu",
+"lastName": "Mirestea",
 "email": "Ion@gmail.com",
 "departament": "IT",
 "dateOfBirth": "1979-10-05"
 }
+
+RestTemplate read from:
+http://localhost:8080/api/employees;
+http://localhost:8080/api/employees;
+http://localhost:8080/api/employees/{id};
+
+Expose to:
+http://localhost:8080/RestTemplate/getAllEmployee
+http://localhost:8080/RestTemplate/addEmployee
+http://localhost:8080/RestTemplate/getEmployeeById/4

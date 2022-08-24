@@ -1,8 +1,8 @@
-package com.personalProject.Crud_hibernate_project.service;
+package com.personalProject.Enterprise_employees_management_system.service;
 
-import com.personalProject.Crud_hibernate_project.dao.EmployeeDAO;
-import com.personalProject.Crud_hibernate_project.entity.Departament;
-import com.personalProject.Crud_hibernate_project.entity.Employee;
+import com.personalProject.Enterprise_employees_management_system.dao.EmployeeDAO;
+import com.personalProject.Enterprise_employees_management_system.entity.Departament;
+import com.personalProject.Enterprise_employees_management_system.entity.Employee;
 import org.springframework.stereotype.Service;
 import org.springframework.transaction.annotation.Transactional;
 

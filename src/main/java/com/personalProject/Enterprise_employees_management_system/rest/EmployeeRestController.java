@@ -1,10 +1,11 @@
-package com.personalProject.Crud_hibernate_project.rest;
+package com.personalProject.Enterprise_employees_management_system.rest;
 
 
-import com.personalProject.Crud_hibernate_project.entity.Departament;
-import com.personalProject.Crud_hibernate_project.entity.Employee;
-import com.personalProject.Crud_hibernate_project.service.EmployeeService;
+import com.personalProject.Enterprise_employees_management_system.entity.Departament;
+import com.personalProject.Enterprise_employees_management_system.entity.Employee;
+import com.personalProject.Enterprise_employees_management_system.service.EmployeeService;
 import org.springframework.cache.annotation.Cacheable;
+import org.springframework.http.HttpStatus;
 import org.springframework.web.bind.annotation.*;
 
 import java.util.List;
@@ -48,6 +49,7 @@ public class EmployeeRestController {
     }
 
     @PostMapping("/employees")
+    @ResponseStatus(HttpStatus.CREATED)
     public Employee addEmployee(@RequestBody Employee theEmployee) {
         theEmployee.setId(0);
         employeeService.save(theEmployee);
@@ -55,13 +57,14 @@ public class EmployeeRestController {
     }
 
     @PutMapping("/employees")
+    @ResponseStatus(HttpStatus.OK)
     public Employee updateEmployee(@RequestBody Employee theEmployee) {
-
         employeeService.save(theEmployee);
         return theEmployee;
     }
 
     @DeleteMapping("/employees/{employeeId}")
+    @ResponseStatus(HttpStatus.OK)
     public String deleteEmployee(@PathVariable int employeeId) {
 
         Employee tempEmployee = employeeService.findById(employeeId);

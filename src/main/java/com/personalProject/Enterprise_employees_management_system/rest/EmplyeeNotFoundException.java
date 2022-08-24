@@ -1,4 +1,4 @@
-package com.personalProject.Crud_hibernate_project.rest;
+package com.personalProject.Enterprise_employees_management_system.rest;
 
 public class EmplyeeNotFoundException extends RuntimeException {
     public EmplyeeNotFoundException(String message) {

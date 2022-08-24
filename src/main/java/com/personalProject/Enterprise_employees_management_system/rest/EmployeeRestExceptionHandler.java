@@ -1,5 +1,6 @@
-package com.personalProject.Crud_hibernate_project.rest;
+package com.personalProject.Enterprise_employees_management_system.rest;
 
+import com.personalProject.Enterprise_employees_management_system.entity.EmployeeErrorResponse;
 import org.springframework.http.HttpStatus;
 import org.springframework.http.ResponseEntity;
 import org.springframework.web.bind.annotation.ControllerAdvice;

@@ -1,6 +1,6 @@
-package com.personalProject.Crud_hibernate_project.dao;
+package com.personalProject.Enterprise_employees_management_system.dao;
 
-import com.personalProject.Crud_hibernate_project.entity.Employee;
+import com.personalProject.Enterprise_employees_management_system.entity.Employee;
 import org.hibernate.Session;
 import org.hibernate.query.Query;
 import org.springframework.beans.factory.annotation.Autowired;
@@ -9,10 +9,10 @@ import org.springframework.stereotype.Repository;
 import javax.persistence.EntityManager;
 
 import java.util.List;
-import java.util.Optional;
 
 @Repository
 public class EmployeeDAOHibernateImpl implements EmployeeDAO {
+
     private EntityManager entityManager;
 
     @Autowired

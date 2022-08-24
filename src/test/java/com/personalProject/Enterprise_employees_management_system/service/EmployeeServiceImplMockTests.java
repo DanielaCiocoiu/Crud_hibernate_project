@@ -1,8 +1,8 @@
-package com.personalProject.Crud_hibernate_project.service;
+package com.personalProject.Enterprise_employees_management_system.service;
 
-import com.personalProject.Crud_hibernate_project.dao.EmployeeDAO;
-import com.personalProject.Crud_hibernate_project.entity.Departament;
-import com.personalProject.Crud_hibernate_project.entity.Employee;
+import com.personalProject.Enterprise_employees_management_system.dao.EmployeeDAO;
+import com.personalProject.Enterprise_employees_management_system.entity.Departament;
+import com.personalProject.Enterprise_employees_management_system.entity.Employee;
 import org.junit.jupiter.api.BeforeEach;
 import org.junit.jupiter.api.Test;
 import org.springframework.beans.factory.annotation.Autowired;
@@ -10,12 +10,13 @@ import org.springframework.boot.test.context.SpringBootTest;
 import org.springframework.boot.test.mock.mockito.MockBean;
 
 import java.util.ArrayList;
+import java.util.Date;
 import java.util.List;
 import java.util.logging.Logger;
 
 import static org.junit.jupiter.api.Assertions.assertEquals;
 import static org.mockito.Mockito.when;
-
+//mvn clean verify
 @SpringBootTest
 class EmployeeServiceImplMockTests {
 
@@ -37,10 +38,7 @@ class EmployeeServiceImplMockTests {
 
     @Test
     void getAll() {
-        List<Employee> mockEmployees = new ArrayList<>();
-        mockEmployees.add(new Employee("Ana", "Irina", "ana@yahoo.com", Departament.IT));
-        mockEmployees.add(new Employee("Irinel", "Nicolescu", "irinel@yahoo.com", Departament.HR));
-        mockEmployees.add(new Employee("iON", "Mihalcea", "ion@yahoo.com", Departament.FINANCE));
+        List<Employee> mockEmployees = getEmployeesMockList();
 
         when(employeeDAO.findAll()).thenReturn(mockEmployees);
         employees = employeeService.findAll();
@@ -50,21 +48,30 @@ class EmployeeServiceImplMockTests {
     }
     @Test
     void getOnlyItDepartaments() {
-        final List<Employee> mockEmployees = new ArrayList<>();
-        mockEmployees.add(new Employee("Ana", "Irina", "ana@yahoo.com", Departament.IT));
-        mockEmployees.add(new Employee("Yuri", "Petrov", "yuri@gmail.com", Departament.HR));
-        mockEmployees.add(new Employee("iON", "Mihalcea", "ion@yahoo.com", Departament.FINANCE));
+        final List<Employee> mockEmployees = getEmployeesMockList();
 
         when(employeeDAO.findAll()).thenReturn(mockEmployees);
         final List<Employee> employeesHR = employeeService.getEmployeeByDepartament(Departament.HR);
 
         final List<Employee> expectedEmployeesIt = new ArrayList<>();
-        expectedEmployeesIt.add(new Employee("Yuri", "Petrov", "yuri@gmail.com", Departament.HR));
+        expectedEmployeesIt.add(new Employee("Yuri", "Petrov", "yuri@gmail.com", Departament.HR, new Date(1970-10-05)));
 
         assertEquals(0, employees.size());
         assertEquals(1, employeesHR.size());
         assertEquals(expectedEmployeesIt, employeesHR);
 
+    }
+
+    //FIXME
+
+
+    private List<Employee> getEmployeesMockList() {
+        final List<Employee> mockEmployees = new ArrayList<>();
+        mockEmployees.add(new Employee("Ana", "Irina", "ana@yahoo.com", Departament.IT, new Date(1970-10-05)));
+        mockEmployees.add(new Employee("Yuri", "Petrov", "yuri@gmail.com", Departament.HR, new Date(1970-10-05)));
+        mockEmployees.add(new Employee("iON", "Mihalcea", "ion@yahoo.com", Departament.FINANCE, new Date(1970-10-05)));
+
+        return mockEmployees;
     }
 
 }

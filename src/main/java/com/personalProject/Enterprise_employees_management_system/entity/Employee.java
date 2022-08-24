@@ -1,4 +1,4 @@
-package com.personalProject.Crud_hibernate_project.entity;
+package com.personalProject.Enterprise_employees_management_system.entity;
 
 import lombok.*;
 
@@ -13,6 +13,7 @@ import java.util.Objects;
 @ToString
 @NoArgsConstructor
 @RequiredArgsConstructor
+
 //@AllArgsConstructor
 public class Employee {
     @Id
@@ -36,6 +37,7 @@ public class Employee {
     @Column(name = "departament")
     private Departament departament;
 
+    @NonNull
     @Column(name="date_of_birth")
     @Temporal(TemporalType.DATE)
     private Date dateOfBirth;

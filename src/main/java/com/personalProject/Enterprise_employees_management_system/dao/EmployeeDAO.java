@@ -1,9 +1,8 @@
-package com.personalProject.Crud_hibernate_project.dao;
+package com.personalProject.Enterprise_employees_management_system.dao;
 
-import com.personalProject.Crud_hibernate_project.entity.Employee;
+import com.personalProject.Enterprise_employees_management_system.entity.Employee;
 
 import java.util.List;
-import java.util.Optional;
 
 public interface EmployeeDAO {
         List<Employee> findAll();

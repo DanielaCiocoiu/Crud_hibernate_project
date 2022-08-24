@@ -1,4 +1,4 @@
-package com.personalProject.Crud_hibernate_project.entity;
+package com.personalProject.Enterprise_employees_management_system.entity;
 
 public enum Departament {
     IT, HR, FINANCE;

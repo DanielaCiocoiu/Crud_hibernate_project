@@ -1,6 +1,6 @@
-package com.personalProject.Crud_hibernate_project.service;
+package com.personalProject.Enterprise_employees_management_system.service;
 
-import com.personalProject.Crud_hibernate_project.entity.Employee;
+import com.personalProject.Enterprise_employees_management_system.entity.Employee;
 import org.springframework.http.*;
 import org.springframework.stereotype.Service;
 import org.springframework.web.client.RestTemplate;
@@ -26,7 +26,7 @@ public class RestTemplateService {
 
         headers.setAccept(Arrays.asList(MediaType.APPLICATION_JSON));
 
-        // headers.add("Authorization", headerValue);
+        // for security stuff -  headers.add("Authorization", headerValue);
 
         HttpEntity<String> entity = new HttpEntity<>("parameters", headers);
 
@@ -43,6 +43,16 @@ public class RestTemplateService {
         Map<String, Integer> param = new HashMap<>();
         param.put("id", id);
         return restTemplate.getForObject(get_Employee_By_id_URL, Employee.class, param);
+    }
 
+    //FIXME
+    public Employee updateEmployeeById(int id1) {
+        return null;
+    }
+
+    //FIXME
+    public Employee deleteEmployeeById(int id1) {
+        return null;
     }
 }
+
