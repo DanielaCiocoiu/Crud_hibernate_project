@@ -26,5 +26,9 @@ public class EmployeeDetail {
     @Column(name = "address")
     private String address;
 
+    // add @OneToOne annotation
+    @NonNull
+    @OneToOne(mappedBy="employee_detail", cascade=CascadeType.ALL)
+    private Employee employee;
 
 }
