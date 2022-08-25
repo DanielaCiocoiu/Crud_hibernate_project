@@ -22,7 +22,7 @@ public class EmployeeRestController {
     }
 
     @GetMapping("/employees")
-    @Cacheable(value = "cacheStudent")
+    @Cacheable(value = "cacheEmployees")
     public List<Employee> findAll() {
         return employeeService.findAll();
     }
@@ -66,8 +66,6 @@ public class EmployeeRestController {
     @DeleteMapping("/employees/{employeeId}")
     @ResponseStatus(HttpStatus.OK)
     public String deleteEmployee(@PathVariable int employeeId) {
-
-        Employee tempEmployee = employeeService.findById(employeeId);
         employeeService.deleteById(employeeId);
         return "Deleted employee id - " + employeeId;
     }

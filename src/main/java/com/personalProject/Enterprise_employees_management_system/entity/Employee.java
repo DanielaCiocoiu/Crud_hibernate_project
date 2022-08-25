@@ -39,19 +39,26 @@ public class Employee {
 
     @NonNull
     @Column(name="date_of_birth")
-    @Temporal(TemporalType.DATE)
+   // @Temporal(TemporalType.DATE)
     private Date dateOfBirth;
+
+    // OneToOne Uni
+    @NonNull
+    @OneToOne(cascade=CascadeType.ALL)
+    @JoinColumn(name="employee_detail_id")
+    private EmployeeDetail employeeDetail;
+
 
     @Override
     public boolean equals(Object o) {
         if (this == o) return true;
         if (o == null || getClass() != o.getClass()) return false;
         Employee employee = (Employee) o;
-        return firstName.equals(employee.firstName) && lastName.equals(employee.lastName) && email.equals(employee.email) && departament == employee.departament && Objects.equals(dateOfBirth, employee.dateOfBirth);
+        return firstName.equals(employee.firstName) && lastName.equals(employee.lastName) && email.equals(employee.email) && departament == employee.departament && dateOfBirth.equals(employee.dateOfBirth) && Objects.equals(employeeDetail, employee.employeeDetail);
     }
 
     @Override
     public int hashCode() {
-        return Objects.hash(firstName, lastName, email, departament, dateOfBirth);
+        return Objects.hash(firstName, lastName, email, departament, dateOfBirth, employeeDetail);
     }
 }

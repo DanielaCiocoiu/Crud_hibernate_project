@@ -11,18 +11,26 @@ logging:
   level:
     org:
       hibernate:
-        type: trace
+        type: ERROR
         descriptor:
           sql:
             BasicBinder=TRACE: TRACE
+
 jpa:
   hibernate.ddl-auto: update
   generate-ddl: true
   show-sql: true
+
+  open:
+  in:
+    view: false
+
+
 properties:
   hibernate:
     format_sql: true
     generate_statistics: true
+
 management:
   info:
     env:
@@ -31,9 +39,24 @@ management:
       name: Enterprise_employees_management_system
       description: A Spring Hibernate exercising app!
       version: 1.0.0
+
 endpoints:
   web:
     exposure: include=*
+
 server:
   error:
     whitelabel.enabled: false
+
+endPoint:
+  RestTemplate read from:
+    http: //localhost:8080/api/employees;
+        //localhost:8080/api/employees;
+        //localhost:8080/api/employees/{id};
+
+expose to: //localhost:8080/RestTemplate/getAllEmployee
+        //localhost:8080/RestTemplate/addEmployee
+        //localhost:8080/RestTemplate/getEmployeeById/4
+
+
+

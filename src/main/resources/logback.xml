@@ -9,7 +9,7 @@
 
     <logger name="com/personalProject/Enterprise_employees_management_system" level="TRACE"/>
     <logger name="org.hibernate.SQL" level="DEBUG" />
-    <logger name="org.hibernate.type" level="TRACE" />
+<!--    <logger name="org.hibernate.type" level="TRACE" />-->
 
     <root level="info">
         <appender-ref ref="console"/>

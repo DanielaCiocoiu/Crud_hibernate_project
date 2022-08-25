@@ -55,20 +55,49 @@ CREATE TABLE `employee` (
   `id` int(11) NOT NULL AUTO_INCREMENT,
   `first_name` varchar(45) DEFAULT NULL,
   `last_name` varchar(45) DEFAULT NULL,
+  `date_of_birth` datetime DEFAULT NULL,
   `email` varchar(45) DEFAULT NULL,
+  `departament` varchar(60) DEFAULT NULL,
+   `employee_detail_id` int(11) DEFAULT NULL,
+  PRIMARY KEY (`id`)
+  KEY `FK_DETAIL_idx` (`employee_detail_id`),
+  CONSTRAINT `FK_DETAIL` FOREIGN KEY (`employee_detail_id`) REFERENCES `employee_detail` (`id`) ON DELETE NO ACTION ON UPDATE NO ACTION
+  ) ENGINE=InnoDB AUTO_INCREMENT=1 DEFAULT CHARSET=latin1;
+
+    SET FOREIGN_KEY_CHECKS = 1;
+--------
+-- Data for table `employee`
+INSERT INTO `employee_directory`.`employee` (`id`, `first_name`, `last_name`, `date_of_birth`, `email`, `departament`) VALUES ('12', 'Nico', 'Miramar', '1988-05-11', 'Nico@yahoo.com', 'FINANCE');
+--------
+CREATE SCHEMA `employee_detail`;
+
+use `employee_detail`;
+
+SET FOREIGN_KEY_CHECKS = 0;
+
+DROP TABLE IF EXISTS `employee_detail`;
+
+CREATE TABLE `employee_detail` (
+  `id` int(11) NOT NULL AUTO_INCREMENT,
+  `salary` int(50) DEFAULT NULL,
+  `address` varchar(45) DEFAULT NULL,
   PRIMARY KEY (`id`)
 ) ENGINE=InnoDB AUTO_INCREMENT=1 DEFAULT CHARSET=latin1;
 
---
--- Data for table `employee`
---
+INSERT INTO `employee_directory`.`employee_detail` (`id`, `salary`, `address`, `id`) VALUES ('12', 'Nico', 'Miramar', '1988-05-11', 'Nico@yahoo.com', 'FINANCE');
+INSERT INTO `employee_directory`.`employee_detail` (`id`, `salary`, `address`) VALUES ('1', '2000', 'Reservelor');
+INSERT INTO `employee_directory`.`employee_detail` (`id`, `salary`, `address`) VALUES ('2', '1500', 'Baia de Arama');
+INSERT INTO `employee_directory`.`employee_detail` (`id`, `salary`, `address`) VALUES ('3', '3000', 'Ficusului');
+INSERT INTO `employee_directory`.`employee_detail` (`id`, `salary`, `address`) VALUES ('4', '6000', 'Unirii');
+INSERT INTO `employee_directory`.`employee_detail` (`id`, `salary`, `address`) VALUES ('5', '5000', 'Elisabeta');
+INSERT INTO `employee_directory`.`employee_detail` (`id`, `salary`, `address`) VALUES ('6', '8000', 'Mosilor');
+INSERT INTO `employee_directory`.`employee_detail` (`id`, `salary`, `address`) VALUES ('7', '9000', 'Ferentari');
+INSERT INTO `employee_directory`.`employee_detail` (`id`, `salary`, `address`) VALUES ('8', '4000', 'Primaverii');
+INSERT INTO `employee_directory`.`employee_detail` (`id`, `salary`, `address`) VALUES ('9', '4000', 'Ceusului');
+INSERT INTO `employee_directory`.`employee_detail` (`id`, `salary`, `address`) VALUES ('10', '5000', 'Apeductului');
+INSERT INTO `employee_directory`.`employee_detail` (`id`, `salary`, `address`) VALUES ('11', '6000', 'Iuliu Maniu');
+INSERT INTO `employee_directory`.`employee_detail` (`id`, `salary`, `address`) VALUES ('12', '7000', 'Timisoara');
 
-INSERT INTO `employee` VALUES
-	(1,'Leslie','Andrews','leslie@luv2code.com'),
-	(2,'Emma','Baumgarten','emma@luv2code.com'),
-	(3,'Avani','Gupta','avani@luv2code.com'),
-	(4,'Yuri','Petrov','yuri@luv2code.com'),
-	(5,'Juan','Vega','juan@luv2code.com');
 
 Development Process
 1. Create a custom error response class
@@ -94,3 +123,20 @@ Expose to:
 http://localhost:8080/RestTemplate/getAllEmployee
 http://localhost:8080/RestTemplate/addEmployee
 http://localhost:8080/RestTemplate/getEmployeeById/4
+
+---------------------------
+CREATE USER 'hbstudent'@'localhost' IDENTIFIED BY 'hbstudent';
+
+GRANT ALL PRIVILEGES ON * . * TO 'hbstudent'@'localhost';
+
+#
+# Starting with MySQL 8.0.4, the MySQL team changed the
+# default authentication plugin for MySQL server
+# from mysql_native_password to caching_sha2_password.
+#
+# The command below will make the appropriate updates for your user account.
+#
+# See the MySQL Reference Manual for details:
+# https://dev.mysql.com/doc/refman/8.0/en/caching-sha2-pluggable-authentication.html
+#
+ALTER USER 'hbstudent'@'localhost' IDENTIFIED WITH mysql_native_password BY 'hbstudent';

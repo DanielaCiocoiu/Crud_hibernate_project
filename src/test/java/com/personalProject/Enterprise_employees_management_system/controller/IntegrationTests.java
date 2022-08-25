@@ -25,10 +25,13 @@ public class IntegrationTests {
         this.mockMvc.perform(
                 get("/api/{name}", Departament.HR))
                 .andExpect(status().isOk())
-                .andExpect(jsonPath("$.length()").value(4))
-                .andExpect(jsonPath("$.[*].firstName").value(containsInAnyOrder("Yuri", "Jack", "Maia", "Irinel")))
+                .andExpect(jsonPath("$.length()").value(5))
+                .andExpect(jsonPath("$.[*].firstName").value(containsInAnyOrder("Yuri", "Jack", "Maia", "Irinel", "Vasile")))
                 .andExpect(jsonPath("$.[0].firstName").value("Yuri"))
-                .andExpect(jsonPath("$.[1].firstName").value("Jack"));
+                .andExpect(jsonPath("$.[1].firstName").value("Jack"))
+                .andExpect(jsonPath("$.[2].firstName").value("Maia"))
+                .andExpect(jsonPath("$.[3].firstName").value("Irinel"))
+                .andExpect(jsonPath("$.[4].firstName").value("Vasile"));
 
     }
     //FIXME
