@@ -1,5 +1,6 @@
 package com.personalProject.Enterprise_employees_management_system.entity;
 
+import com.fasterxml.jackson.annotation.JsonManagedReference;
 import lombok.*;
 
 import javax.persistence.*;
@@ -18,7 +19,7 @@ import java.util.Objects;
 public class Employee {
     @Id
     @GeneratedValue(strategy = GenerationType.IDENTITY)
-    @Column(name = "id")
+    @Column(name = "id", nullable = false)
     private int id;
 
     @NonNull
@@ -46,6 +47,7 @@ public class Employee {
     @NonNull
     @OneToOne(cascade=CascadeType.ALL)
     @JoinColumn(name="employee_detail_id")
+    @JsonManagedReference  //avoid app to enter in an infinite loop / infinite recursion Stackoverflow error.
     private EmployeeDetail employeeDetail;
 
 

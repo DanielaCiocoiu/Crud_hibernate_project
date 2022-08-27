@@ -57,7 +57,7 @@ class EmployeeServiceImplMockTests {
         final List<Employee> actual = employeeService.getEmployeeByDepartament(Departament.HR);
 
         final List<Employee> expected = new ArrayList<>();
-        expected.add(new Employee("Maria", "Petrov", "yuri@gmail.com", Departament.HR, new Date(1970-10-05),new EmployeeDetail(5000, "Londra")));
+        expected.add(new Employee("Maria", "Petrov", "yuri@gmail.com", Departament.HR, new Date(1970-10-05),new EmployeeDetail(5000, "Londra", new Employee())));
         assertEquals(1, actual.size());
         assertEquals(expected, actual);
 
@@ -68,9 +68,9 @@ class EmployeeServiceImplMockTests {
 
     private List<Employee> getEmployeesMockList() {
         final List<Employee> mockEmployees = new ArrayList<>();
-        mockEmployees.add(new Employee("Ana", "Irina", "ana@yahoo.com", Departament.IT, new Date(1970-10-05), new EmployeeDetail(5000, "Paris")));
-        mockEmployees.add(new Employee("Maria", "Petrov", "yuri@gmail.com", Departament.HR, new Date(1970-10-05),new EmployeeDetail(5000, "Londra")));
-        mockEmployees.add(new Employee("iON", "Mihalcea", "ion@yahoo.com", Departament.FINANCE, new Date(1970-10-05), new EmployeeDetail(5000, "Milano")));
+        mockEmployees.add(new Employee("Ana", "Irina", "ana@yahoo.com", Departament.IT, new Date(1970-10-05), new EmployeeDetail(5000, "Paris", new Employee())));
+        mockEmployees.add(new Employee("Maria", "Petrov", "yuri@gmail.com", Departament.HR, new Date(1970-10-05),new EmployeeDetail(5000, "Londra", new Employee())));
+        mockEmployees.add(new Employee("iON", "Mihalcea", "ion@yahoo.com", Departament.FINANCE, new Date(1970-10-05), new EmployeeDetail(5000, "Milano", new Employee())));
 
         return mockEmployees;
     }

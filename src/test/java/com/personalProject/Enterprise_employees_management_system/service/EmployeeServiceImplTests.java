@@ -86,7 +86,7 @@ class EmployeeServiceImplTests {
         employee.setEmail("irinel@yahoo.com");
         employee.setDateOfBirth(new Date(1988-10-05));
         employee.setDepartament(Departament.IT);
-        employee.setEmployeeDetail(new EmployeeDetail( 5000, "Micsunelelor"));
+        employee.setEmployeeDetail(new EmployeeDetail( 5000, "Micsunelelor", new Employee()));
         return employee;
     }
 

@@ -17,13 +17,10 @@ logging:
             BasicBinder=TRACE: TRACE
 
 jpa:
-  hibernate.ddl-auto: update
-  generate-ddl: true
-  show-sql: true
-
-  open:
-  in:
-    view: false
+  hibernate:
+    ddl-auto: update
+    generate-ddl: true
+    show-sql: true
 
 
 properties:
