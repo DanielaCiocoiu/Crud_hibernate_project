@@ -1,6 +1,5 @@
 package com.personalProject.Enterprise_employees_management_system.dao;
 
-import com.personalProject.Enterprise_employees_management_system.entity.Employee;
 import com.personalProject.Enterprise_employees_management_system.entity.EmployeeDetail;
 import org.hibernate.Session;
 import org.hibernate.query.Query;
@@ -43,18 +42,17 @@ public class EmployeeDetailDAOImpl implements EmployeeDetailDAO {
     @Override
     public void saveEmployeeDetail(EmployeeDetail employeeDetail) {
         Session currentSession = entityManager.unwrap(Session.class);
+        employeeDetail.setAddress(employeeDetail.getAddress());
+        employeeDetail.setSalary(employeeDetail.getSalary());
         currentSession.saveOrUpdate(employeeDetail);
-       // saveOrUpdate - daca id=0 se face save, daca nu - update
+        // saveOrUpdate - daca id=0 se face save, daca nu - update
     }
 
     @Override
     public void deleteByIdEmployeeDetail(int theId) {
         Session currentSession = entityManager.unwrap(Session.class);
-        Query theQuery = currentSession.createQuery("delete from employee_detail where id=:id_emp_detail");
-        theQuery.setParameter("id_emp_detail", theId);
+        Query theQuery = currentSession.createQuery("delete from EmployeeDetail where id=:employeeId");
+        theQuery.setParameter("employeeId", theId);
         theQuery.executeUpdate();
     }
-
-
-
 }

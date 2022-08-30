@@ -41,10 +41,19 @@ public class EmployeeDAOImpl implements EmployeeDAO {
     }
 
     @Override
+    public List<Employee> getEmployeeByDepartament() {
+        Session currentSession = entityManager.unwrap(Session.class);
+        Query<Employee> theQuery = currentSession.createQuery("from Employee", Employee.class);
+
+        final List<Employee> employees = theQuery.getResultList();
+        return employees;
+    }
+
+    @Override
     public void save(Employee theEmployee) {
         Session currentSession = entityManager.unwrap(Session.class);
         currentSession.saveOrUpdate(theEmployee);
-       // saveOrUpdate - daca id=0 se face save, daca nu - update
+        // saveOrUpdate - daca id=0 se face save, daca nu - update
     }
 
     @Override
@@ -53,15 +62,6 @@ public class EmployeeDAOImpl implements EmployeeDAO {
         Query theQuery = currentSession.createQuery("delete from Employee where id=:employeeId");
         theQuery.setParameter("employeeId", theId);
         theQuery.executeUpdate();
-    }
-
-    @Override
-    public  List<Employee>  getEmployeeByDepartament() {
-        Session currentSession = entityManager.unwrap(Session.class);
-        Query<Employee> theQuery = currentSession.createQuery("from Employee", Employee.class);
-
-        final  List<Employee>  employees = theQuery.getResultList();
-        return employees;
     }
 
 }

@@ -11,17 +11,16 @@ logging:
   level:
     org:
       hibernate:
-        type: ERROR
+        type: TRACE
         descriptor:
           sql:
             BasicBinder=TRACE: TRACE
 
 jpa:
   hibernate:
-    ddl-auto: update
+    ddl-auto: update create drop
     generate-ddl: true
     show-sql: true
-
 
 properties:
   hibernate:

@@ -18,8 +18,8 @@ public class EmployeeDetail {
 
     @Id
     @GeneratedValue(strategy = GenerationType.IDENTITY)
-    @Column(name = "id_emp_detail", nullable = false)
-    private int idEmployeeDetail;
+    @Column(name = "id", nullable = false)
+    private int id;
 
     @NonNull
     @Column(name = "salary")
@@ -47,4 +47,6 @@ public class EmployeeDetail {
     public int hashCode() {
         return Objects.hash(salary, address, employee);
     }
+
+    //mappedBy tells Hibernate - look at the employeeDetail property in the Employee class
 }

@@ -37,7 +37,7 @@ public class EmployeeDetailController {
     @PostMapping("/employeesDetail")
     @ResponseStatus(HttpStatus.CREATED)
     public EmployeeDetail addEmployee(@RequestBody EmployeeDetail employeeDetail) {
-        employeeDetail.setIdEmployeeDetail(0);
+        employeeDetail.setId(0);
         employeeDetailService.saveEmployeeDetail(employeeDetail);
         return employeeDetail;
     }

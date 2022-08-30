@@ -2,6 +2,7 @@ package com.personalProject.Enterprise_employees_management_system.entity;
 
 import com.fasterxml.jackson.annotation.JsonManagedReference;
 import lombok.*;
+import org.springframework.transaction.annotation.Transactional;
 
 import javax.persistence.*;
 import java.util.Date;
@@ -40,13 +41,12 @@ public class Employee {
 
     @NonNull
     @Column(name="date_of_birth")
-   // @Temporal(TemporalType.DATE)
     private Date dateOfBirth;
 
-    // OneToOne Uni
+    // Owning side
     @NonNull
-    @OneToOne(cascade=CascadeType.ALL)
-    @JoinColumn(name="employee_detail_id")
+    @OneToOne(cascade=CascadeType.ALL, orphanRemoval = true, fetch = FetchType.LAZY)
+    @JoinColumn(name="employee_detail_id", nullable = false)
     @JsonManagedReference  //avoid app to enter in an infinite loop / infinite recursion Stackoverflow error.
     private EmployeeDetail employeeDetail;
 
