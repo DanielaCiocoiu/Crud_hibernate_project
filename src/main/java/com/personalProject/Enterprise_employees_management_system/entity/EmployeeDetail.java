@@ -1,8 +1,9 @@
 package com.personalProject.Enterprise_employees_management_system.entity;
 
 import com.fasterxml.jackson.annotation.JsonBackReference;
-import com.fasterxml.jackson.annotation.JsonManagedReference;
 import lombok.*;
+import org.hibernate.annotations.OnDelete;
+import org.hibernate.annotations.OnDeleteAction;
 
 import javax.persistence.*;
 import java.util.Objects;
@@ -13,7 +14,8 @@ import java.util.Objects;
 @Setter
 @ToString
 @NoArgsConstructor
-@RequiredArgsConstructor
+//@RequiredArgsConstructor
+@AllArgsConstructor
 public class EmployeeDetail {
 
     @Id
@@ -21,17 +23,15 @@ public class EmployeeDetail {
     @Column(name = "id", nullable = false)
     private int id;
 
-    @NonNull
     @Column(name = "salary")
     private Integer salary;
 
-    @NonNull
     @Column(name = "address")
     private String address;
 
     // OneToOne Bi
-    @NonNull
-    @OneToOne(mappedBy="employeeDetail", cascade=CascadeType.ALL)
+    @OneToOne(mappedBy="employeeDetail")
+    @OnDelete(action = OnDeleteAction.CASCADE)
     @JsonBackReference //avoid app to enter in an infinite loop / infinite recursion Stackoverflow error.
     private Employee employee;
 
@@ -40,13 +40,13 @@ public class EmployeeDetail {
         if (this == o) return true;
         if (o == null || getClass() != o.getClass()) return false;
         EmployeeDetail that = (EmployeeDetail) o;
-        return salary == that.salary && address.equals(that.address) && employee.equals(that.employee);
+        return id == that.id && salary.equals(that.salary) && address.equals(that.address) && employee.equals(that.employee);
     }
 
     @Override
     public int hashCode() {
-        return Objects.hash(salary, address, employee);
+        return Objects.hash(id, salary, address, employee);
     }
 
-    //mappedBy tells Hibernate - look at the employeeDetail property in the Employee class
+//mappedBy tells Hibernate - look at the employeeDetail property in the Employee class
 }

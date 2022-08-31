@@ -61,7 +61,20 @@ public class EmployeeServiceImpl implements EmployeeService {
     @Override
     @Transactional
     public void deleteById(int theId) {
-        employeeDAO.deleteById(theId);
-    }
+        Employee employee1 = employeeDAO.findById(theId);
+        EmployeeDetail employeeDetail = new EmployeeDetail();
 
-}
+        employee1.setId(employee1.getEmployeeDetail().getId());
+        employeeDetail.setSalary(employee1.getEmployeeDetail().getSalary());
+        employeeDetail.setAddress(employee1.getEmployeeDetail().getAddress());
+        //set child refference
+        employee1.setEmployeeDetail(employeeDetail);
+        //Set parent reference
+        employeeDetail.setEmployee(employee1);
+
+        employeeDetail.getEmployee().setEmployeeDetail(null);
+            employeeDAO.deleteById(theId);
+        }
+
+
+    }
