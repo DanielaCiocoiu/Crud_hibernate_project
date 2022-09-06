@@ -7,6 +7,7 @@ import org.hibernate.annotations.OnDeleteAction;
 
 import javax.persistence.*;
 import java.util.Date;
+import java.util.List;
 import java.util.Objects;
 
 @Entity
@@ -53,16 +54,19 @@ public class Employee {
     private EmployeeDetail employeeDetail;
 
 
+    @OneToMany(mappedBy="employee",cascade = CascadeType.ALL,orphanRemoval = true)
+    private List<Phone> phones;
 
-//    public void addEmployeeDetail(EmployeeDetail detail) {
-//        employeeDetail.getEmployee().setEmployeeDetail(detail);
-//        detail.setEmployee(this);
-//    }
-//
-//    public void removeComment(EmployeeDetail detail) {
-//        employeeDetail.remove(detail);
-//        detail.setEmployee(null);
-//    }
+
+    public void addPhone(Phone phone) {
+        phones.add(phone);
+        phone.setEmployee(this);
+    }
+
+    public void removeComment(Phone phone) {
+        phones.remove(phone);
+        phone.setEmployee(null);
+    }
 
 
     @Override
@@ -75,6 +79,20 @@ public class Employee {
 
     @Override
     public int hashCode() {
-        return Objects.hash(id, firstName, lastName, email, departament, dateOfBirth, employeeDetail);
+        return getClass().hashCode();
     }
+
+   // @OneToMany association is marked with the mappedBy attribute which indicates that the @ManyToOne side is responsible for handling this bidirectional association.
+
+    /*And, in the context of Hibernate, only synchronized bidirectional
+    associations are guaranteed to be persisted properly in the database.
+    Even if you observe on a specific Hibernate version that it works even when the association is out of sync,
+    it’s not guaranteed that it will work if you upgrade to a newer version of Hibernate.
+
+    For these reasons, the Employee entity defines the addPhone and
+    removePhone entity state synchronization methods.
+
+    So, when you add a PostPhone, you need to use the addPhone method:
+*/
+
 }

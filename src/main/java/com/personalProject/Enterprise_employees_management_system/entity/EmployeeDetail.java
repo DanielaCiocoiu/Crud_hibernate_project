@@ -9,7 +9,7 @@ import javax.persistence.*;
 import java.util.Objects;
 
 @Entity
-@Table(name="employee_detail")
+@Table(name = "employee_detail")
 @Getter
 @Setter
 @ToString
@@ -30,7 +30,7 @@ public class EmployeeDetail {
     private String address;
 
     // OneToOne Bi
-    @OneToOne(mappedBy="employeeDetail")
+    @OneToOne(mappedBy = "employeeDetail")
     @OnDelete(action = OnDeleteAction.CASCADE)
     @JsonBackReference //avoid app to enter in an infinite loop / infinite recursion Stackoverflow error.
     private Employee employee;

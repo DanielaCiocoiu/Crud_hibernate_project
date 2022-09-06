@@ -46,7 +46,6 @@ public class EmployeeServiceImpl implements EmployeeService {
     @Override
     @Transactional
     public void save(Employee theEmployee) {
-
         EmployeeDetail employeeDetail = new EmployeeDetail();
         employeeDetail.setSalary(theEmployee.getEmployeeDetail().getSalary());
         employeeDetail.setAddress(theEmployee.getEmployeeDetail().getAddress());
@@ -73,8 +72,6 @@ public class EmployeeServiceImpl implements EmployeeService {
         employeeDetail.setEmployee(employee1);
 
         employeeDetail.getEmployee().setEmployeeDetail(null);
-            employeeDAO.deleteById(theId);
-        }
-
-
+        employeeDAO.deleteById(theId);
     }
+}
