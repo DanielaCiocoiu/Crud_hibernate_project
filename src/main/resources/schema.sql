@@ -11,64 +11,63 @@ DROP TABLE IF EXISTS `employee_detail`;
 
 
 CREATE TABLE `employee` (
-  `id` int(11) NOT NULL AUTO_INCREMENT,
+  `id_employee` int(11) NOT NULL AUTO_INCREMENT,
   `first_name` varchar(45) DEFAULT NULL,
   `last_name` varchar(45) DEFAULT NULL,
   `date_of_birth` datetime DEFAULT NULL,
   `email` varchar(45) DEFAULT NULL,
   `departament` varchar(60) DEFAULT NULL,
   `employee_detail_id` int(11) DEFAULT NULL,
-  PRIMARY KEY (`id`),
+  PRIMARY KEY (`id_employee`),
   KEY `FK_DETAIL_idx` (`employee_detail_id`),
   CONSTRAINT `FK_DETAIL` FOREIGN KEY (`employee_detail_id`)
-  REFERENCES `employee_detail` (`id`) ON DELETE CASCADE ON UPDATE CASCADE
+  REFERENCES `employee_detail` (`id_employee`) ON DELETE CASCADE ON UPDATE CASCADE
 ) ENGINE=InnoDB AUTO_INCREMENT=1 DEFAULT CHARSET=latin1;
 
 CREATE TABLE `employee_detail` (
-  `id` int(11) NOT NULL AUTO_INCREMENT,
+  `id_emp_detail` int(11) NOT NULL AUTO_INCREMENT,
   `salary` int(50) DEFAULT NULL,
   `address` varchar(45) DEFAULT NULL,
-  PRIMARY KEY (`id`)
+  PRIMARY KEY (`id_emp_detail`)
 ) ENGINE=InnoDB AUTO_INCREMENT=1 DEFAULT CHARSET=latin1;
 
 DROP TABLE IF EXISTS `phones`;
 CREATE TABLE `phones` (
-  `id` INT(50) NOT NULL AUTO_INCREMENT,
+  `id_phone` INT(50) NOT NULL AUTO_INCREMENT,
   `type_phone` varchar(45) DEFAULT NULL,
   `phone_number` int(11) DEFAULT NULL,
   `employee_id` int(11) DEFAULT NULL,
 
-  PRIMARY KEY (`id`),
+  PRIMARY KEY (`id_phone`),
 
   KEY `FK_EMPLOYEE_idx` (`employee_id`),
 
   CONSTRAINT `FK_EMPLOYEE`
   FOREIGN KEY (`employee_id`)
-  REFERENCES `employee` (`id`)
+  REFERENCES `employee` (`id_employee`)
 
   ON DELETE NO ACTION ON UPDATE NO ACTION
 ) ENGINE=InnoDB AUTO_INCREMENT=10 DEFAULT CHARSET=latin1;
 
-
-INSERT INTO `employee_directory`.`phones` (`id`, `type_phone`, `phone_number`, `employee_id`) VALUES ('1', 'mobile', '0722139456', '1');
-INSERT INTO `employee_directory`.`phones` (`id`, `type_phone`, `phone_number`, `employee_id`) VALUES ('2', 'fix_home', '021555777', '1');
-INSERT INTO `employee_directory`.`phones` (`id`, `type_phone`, `phone_number`, `employee_id`) VALUES ('3', 'fix_work', '125444556', '1');
-INSERT INTO `employee_directory`.`phones` (`id`, `type_phone`, `phone_number`, `employee_id`) VALUES ('4', 'work_mobile', '071112222', '1');
-INSERT INTO `employee_directory`.`phones` (`id`, `type_phone`, `phone_number`, `employee_id`) VALUES ('5', 'mobile', '0722139456', '2');
-INSERT INTO `employee_directory`.`phones` (`id`, `type_phone`, `phone_number`, `employee_id`) VALUES ('6', 'fix_home', '071112222', '2');
-INSERT INTO `employee_directory`.`phones` (`id`, `type_phone`, `phone_number`, `employee_id`) VALUES ('7', 'fix_work', '071112222', '2');
-INSERT INTO `employee_directory`.`phones` (`id`, `type_phone`, `phone_number`, `employee_id`) VALUES ('8', 'work_mobile', '0722139456', '2');
-INSERT INTO `employee_directory`.`phones` (`id`, `type_phone`, `phone_number`, `employee_id`) VALUES ('9', 'mobile', '071112222', '3');
-INSERT INTO `employee_directory`.`phones` (`id`, `type_phone`, `phone_number`, `employee_id`) VALUES ('10', 'fix_home', '071112222', '3');
-INSERT INTO `employee_directory`.`phones` (`id`, `type_phone`, `phone_number`, `employee_id`) VALUES ('11', 'fix_work', '071112222', '3');
-INSERT INTO `employee_directory`.`phones` (`id`, `type_phone`, `phone_number`, `employee_id`) VALUES ('12', 'work_mobile', '071112222', '3');
-INSERT INTO `employee_directory`.`phones` (`id`, `type_phone`, `phone_number`, `employee_id`) VALUES ('13', 'mobile', '071112222', '4');
-INSERT INTO `employee_directory`.`phones` (`id`, `type_phone`, `phone_number`, `employee_id`) VALUES ('14', 'fix_home', '071112222', '4');
-INSERT INTO `employee_directory`.`phones` (`id`, `type_phone`, `phone_number`, `employee_id`) VALUES ('15', 'fix_work', '071112222', '4');
-INSERT INTO `employee_directory`.`phones` (`id`, `type_phone`, `phone_number`, `employee_id`) VALUES ('16', 'work_mobile', '071112222', '4');
-
-
 SET FOREIGN_KEY_CHECKS = 1;
+
+INSERT INTO `employee_directory`.`phones` (`id_phone`, `type_phone`, `phone_number`, `employee_id`) VALUES ('1', 'MOBILE', '0722139456', '1');
+INSERT INTO `employee_directory`.`phones` (`id_phone`, `type_phone`, `phone_number`, `employee_id`) VALUES ('2', 'FIX_HOME', '021555777', '1');
+INSERT INTO `employee_directory`.`phones` (`id_phone`, `type_phone`, `phone_number`, `employee_id`) VALUES ('3', 'FIX_WORK', '125444556', '1');
+INSERT INTO `employee_directory`.`phones` (`id_phone`, `type_phone`, `phone_number`, `employee_id`) VALUES ('4', 'WORK_MOBILE', '071112222', '1');
+INSERT INTO `employee_directory`.`phones` (`id_phone`, `type_phone`, `phone_number`, `employee_id`) VALUES ('5', 'MOBILE', '0722139456', '2');
+INSERT INTO `employee_directory`.`phones` (`id_phone`, `type_phone`, `phone_number`, `employee_id`) VALUES ('6', 'FIX_HOME', '071112222', '2');
+INSERT INTO `employee_directory`.`phones` (`id_phone`, `type_phone`, `phone_number`, `employee_id`) VALUES ('7', 'FIX_WORK', '071112222', '2');
+INSERT INTO `employee_directory`.`phones` (`id_phone`, `type_phone`, `phone_number`, `employee_id`) VALUES ('8', 'WORK_MOBILE', '0722139456', '2');
+INSERT INTO `employee_directory`.`phones` (`id_phone`, `type_phone`, `phone_number`, `employee_id`) VALUES ('9', 'MOBILE', '071112222', '3');
+INSERT INTO `employee_directory`.`phones` (`id_phone`, `type_phone`, `phone_number`, `employee_id`) VALUES ('10', 'FIX_HOME', '071112222', '3');
+INSERT INTO `employee_directory`.`phones` (`id_phone`, `type_phone`, `phone_number`, `employee_id`) VALUES ('11', 'FIX_WORK', '071112222', '3');
+INSERT INTO `employee_directory`.`phones` (`id_phone`, `type_phone`, `phone_number`, `employee_id`) VALUES ('12', 'WORK_MOBILE', '071112222', '3');
+INSERT INTO `employee_directory`.`phones` (`id_phone`, `type_phone`, `phone_number`, `employee_id`) VALUES ('13', 'MOBILE', '071112222', '4');
+INSERT INTO `employee_directory`.`phones` (`id_phone`, `type_phone`, `phone_number`, `employee_id`) VALUES ('14', 'FIX_HOME', '071112222', '4');
+INSERT INTO `employee_directory`.`phones` (`id_phone`, `type_phone`, `phone_number`, `employee_id`) VALUES ('15', 'FIX_WORK', '071112222', '4');
+INSERT INTO `employee_directory`.`phones` (`id_phone`, `type_phone`, `phone_number`, `employee_id`) VALUES ('16', 'WORK_MOBILE', '071112222', '4');
+
 
 
 
@@ -83,8 +82,6 @@ insert into employee (id, first_name, last_name, date_of_birth, email, departame
 insert into employee (id, first_name, last_name, date_of_birth, email, departament, employee_detail_id) values (9, 'Emma', 'Nica', str_to_date('1956-02-14 00:00:00', '%Y-%m-%d %T'), 'ema@yahoo.com', 'FINANCE', 9);
 insert into employee (id, first_name, last_name, date_of_birth, email, departament, employee_detail_id) values (10, 'Vasile', 'Frasin', str_to_date('1989-11-08 00:00:00', '%Y-%m-%d %T'), 'Vasile@gmail.com', 'HR', 10);
 insert into employee (id, first_name, last_name, date_of_birth, email, departament, employee_detail_id) values (11, 'Ama', 'Iliescu', str_to_date('1988-11-08 00:00:00', '%Y-%m-%d %T'), 'Ama@gmail.com', 'IT', 11);
-
-
 
 
 insert into employee_detail (id, salary, address) values (1, 2000, 'Reservelor');
