@@ -1,9 +1,7 @@
 package com.personalProject.Enterprise_employees_management_system.service;
 
 import com.personalProject.Enterprise_employees_management_system.dao.EmployeeDAO;
-import com.personalProject.Enterprise_employees_management_system.entity.Departament;
-import com.personalProject.Enterprise_employees_management_system.entity.Employee;
-import com.personalProject.Enterprise_employees_management_system.entity.EmployeeDetail;
+import com.personalProject.Enterprise_employees_management_system.entity.*;
 import org.junit.Ignore;
 import org.junit.jupiter.api.BeforeEach;
 import org.junit.jupiter.api.Test;
@@ -58,23 +56,34 @@ class EmployeeServiceImplMockTests {
 
         final List<Employee> expected = new ArrayList<>();
         EmployeeDetail employeeDetail = new EmployeeDetail();
+        employeeDetail.setId(2);
         employeeDetail.setSalary(5000);
         employeeDetail.setAddress("Londra");
         employeeDetail.setEmployee(new Employee());
-        expected.add(new Employee(1, "Maria", "Petrov", "yuri@gmail.com", Departament.HR, new Date(1970-10-05), employeeDetail));
+
+        final List<Phone> phones = new ArrayList<>();
+        phones.add(new Phone(1,  TypePhone.MOBILE, 0722111111, new Employee()));
+        phones.add(new Phone(1, TypePhone.FIX_HOME, 0212111111, new Employee()));
+        phones.add(new Phone(1, TypePhone.FIX_WORK, 0312111111, new Employee()));
+
+        expected.add(new Employee(2, "Maria", "Petrov", "yuri@gmail.com", Departament.HR, new Date(1970-10-05), employeeDetail, phones));
         assertEquals(1, actual.size());
         assertEquals(expected, actual);
 
     }
 
     //FIXME
-
-
     private List<Employee> getEmployeesMockList() {
         final List<Employee> mockEmployees = new ArrayList<>();
-        mockEmployees.add(new Employee(1,"Ana", "Irina", "ana@yahoo.com", Departament.IT, new Date(1970-10-05), new EmployeeDetail(1,5000, "Paris", new Employee())));
-        mockEmployees.add(new Employee(2,"Maria", "Petrov", "yuri@gmail.com", Departament.HR, new Date(1970-10-05),new EmployeeDetail(2,5000, "Londra", new Employee())));
-        mockEmployees.add(new Employee(3,"iON", "Mihalcea", "ion@yahoo.com", Departament.FINANCE, new Date(1970-10-05), new EmployeeDetail(3,5000, "Milano", new Employee())));
+
+        final List<Phone> phones = new ArrayList<>();
+        phones.add(new Phone(1, TypePhone.MOBILE, 0722111111, new Employee()));
+        phones.add(new Phone(1, TypePhone.FIX_HOME, 0212111111, new Employee()));
+        phones.add(new Phone(1, TypePhone.FIX_WORK, 0312111111, new Employee()));
+
+        mockEmployees.add(new Employee(1,"Ana", "Irina", "ana@yahoo.com", Departament.IT, new Date(1970-10-05), new EmployeeDetail(1,5000, "Paris", new Employee()), phones));
+        mockEmployees.add(new Employee(2,"Maria", "Petrov", "yuri@gmail.com", Departament.HR, new Date(1970-10-05),new EmployeeDetail(2,5000, "Londra", new Employee()), phones));
+        mockEmployees.add(new Employee(3,"iON", "Mihalcea", "ion@yahoo.com", Departament.FINANCE, new Date(1970-10-05), new EmployeeDetail(3,5000, "Milano", new Employee()), phones));
 
         return mockEmployees;
     }
