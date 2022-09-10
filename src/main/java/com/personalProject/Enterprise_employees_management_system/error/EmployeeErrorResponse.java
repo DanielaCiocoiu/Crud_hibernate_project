@@ -1,7 +1,9 @@
-package com.personalProject.Enterprise_employees_management_system.entity;
+package com.personalProject.Enterprise_employees_management_system.error;
 
 
-import lombok.*;
+import lombok.AllArgsConstructor;
+import lombok.Data;
+import lombok.NoArgsConstructor;
 
 @Data
 @NoArgsConstructor
