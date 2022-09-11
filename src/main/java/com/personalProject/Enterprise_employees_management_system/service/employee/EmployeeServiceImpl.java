@@ -1,9 +1,11 @@
-package com.personalProject.Enterprise_employees_management_system.service;
+package com.personalProject.Enterprise_employees_management_system.service.employee;
 
-import com.personalProject.Enterprise_employees_management_system.dao.EmployeeDAO;
-import com.personalProject.Enterprise_employees_management_system.entity.Departament;
-import com.personalProject.Enterprise_employees_management_system.entity.Employee;
-import com.personalProject.Enterprise_employees_management_system.entity.EmployeeDetail;
+import com.personalProject.Enterprise_employees_management_system.domain.Departament;
+import com.personalProject.Enterprise_employees_management_system.domain.Employee;
+import com.personalProject.Enterprise_employees_management_system.domain.EmployeeDetail;
+import com.personalProject.Enterprise_employees_management_system.domain.Phone;
+import org.slf4j.Logger;
+import org.slf4j.LoggerFactory;
 import org.springframework.stereotype.Service;
 import org.springframework.transaction.annotation.Transactional;
 
@@ -12,6 +14,8 @@ import java.util.stream.Collectors;
 
 @Service
 public class EmployeeServiceImpl implements EmployeeService {
+    private static final Logger logger
+            = LoggerFactory.getLogger(EmployeeServiceImpl.class);
 
     private EmployeeDAO employeeDAO;
 
@@ -46,9 +50,8 @@ public class EmployeeServiceImpl implements EmployeeService {
     @Override
     @Transactional
     public void save(Employee theEmployee) {
-        EmployeeDetail employeeDetail = new EmployeeDetail();
-        employeeDetail.setSalary(theEmployee.getEmployeeDetail().getSalary());
-        employeeDetail.setAddress(theEmployee.getEmployeeDetail().getAddress());
+        EmployeeDetail employeeDetail = theEmployee.getEmployeeDetail();
+
         //set child refference
         theEmployee.setEmployeeDetail(employeeDetail);
         //Set parent reference
@@ -61,15 +64,15 @@ public class EmployeeServiceImpl implements EmployeeService {
     @Transactional
     public void deleteById(int theId) {
         Employee employee1 = employeeDAO.findById(theId);
-        EmployeeDetail employeeDetail = new EmployeeDetail();
+        EmployeeDetail employeeDetail = employee1.getEmployeeDetail();
 
-        employee1.setId(employee1.getEmployeeDetail().getId());
-        employeeDetail.setSalary(employee1.getEmployeeDetail().getSalary());
-        employeeDetail.setAddress(employee1.getEmployeeDetail().getAddress());
         //set child refference
         employee1.setEmployeeDetail(employeeDetail);
         //Set parent reference
         employeeDetail.setEmployee(employee1);
+
+        Phone phone = employee1.getPhones().get(0);
+        employee1.removePhone(phone);
 
         employeeDetail.getEmployee().setEmployeeDetail(null);
         employeeDAO.deleteById(theId);

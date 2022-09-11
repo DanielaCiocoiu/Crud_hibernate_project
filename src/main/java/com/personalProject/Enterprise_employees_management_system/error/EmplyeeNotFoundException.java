@@ -1,4 +1,4 @@
-package com.personalProject.Enterprise_employees_management_system.rest;
+package com.personalProject.Enterprise_employees_management_system.error;
 
 public class EmplyeeNotFoundException extends RuntimeException {
     public EmplyeeNotFoundException(String message) {

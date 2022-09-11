@@ -1,10 +1,12 @@
-package com.personalProject.Enterprise_employees_management_system.entity;
+package com.personalProject.Enterprise_employees_management_system.domain;
 
 import com.fasterxml.jackson.annotation.JsonBackReference;
-import lombok.*;
+import lombok.AllArgsConstructor;
+import lombok.Getter;
+import lombok.NoArgsConstructor;
+import lombok.Setter;
 
 import javax.persistence.*;
-import java.util.Objects;
 
 @Entity
 @Table(name = "phones")
@@ -17,7 +19,7 @@ public class Phone {
     @Id
     @GeneratedValue(strategy = GenerationType.IDENTITY)
     @Column(name = "id_phone", nullable = false)
-    private int id;
+    private Integer id;
 
     @Enumerated(EnumType.STRING)
     @Column(name = "type_phone")
@@ -26,7 +28,7 @@ public class Phone {
     @Column(name = "phone_number")
     private Integer phoneNumber;
 
-    @ManyToOne()
+    @ManyToOne(fetch = FetchType.LAZY)
     @JoinColumn(name="employee_id")
     @JsonBackReference
     private Employee employee;
@@ -35,7 +37,7 @@ public class Phone {
 // strategy which is bad for performance
 
 
-/*    @Override
+    @Override
     public boolean equals(Object o) {
         if (this == o) return true;
         if (!(o instanceof Phone))
@@ -46,20 +48,8 @@ public class Phone {
     @Override
     public int hashCode() {
         return getClass().hashCode();
-    }*/
-
-    @Override
-    public boolean equals(Object o) {
-        if (this == o) return true;
-        if (o == null || getClass() != o.getClass()) return false;
-        Phone phone = (Phone) o;
-        return typePhone == phone.typePhone && Objects.equals(phoneNumber, phone.phoneNumber) && Objects.equals(employee, phone.employee);
     }
 
-    @Override
-    public int hashCode() {
-        return Objects.hash(typePhone, phoneNumber, employee);
-    }
 
     /*  The child entity, PostComment, implement the equals and hashCode methods.
     Since we cannot rely on a natural identifier for equality checks,

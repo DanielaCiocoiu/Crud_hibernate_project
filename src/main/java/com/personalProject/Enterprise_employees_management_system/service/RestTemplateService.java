@@ -1,10 +1,9 @@
 package com.personalProject.Enterprise_employees_management_system.service;
 
-import com.personalProject.Enterprise_employees_management_system.entity.Employee;
+import com.personalProject.Enterprise_employees_management_system.domain.Employee;
 import org.springframework.http.*;
 import org.springframework.stereotype.Service;
 import org.springframework.web.client.RestTemplate;
-import org.springframework.http.HttpHeaders;
 
 import java.util.Arrays;
 import java.util.HashMap;

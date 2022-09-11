@@ -1,6 +1,6 @@
-package com.personalProject.Enterprise_employees_management_system.dao;
+package com.personalProject.Enterprise_employees_management_system.service.phone;
 
-import com.personalProject.Enterprise_employees_management_system.entity.Phone;
+import com.personalProject.Enterprise_employees_management_system.domain.Phone;
 
 import java.util.List;
 

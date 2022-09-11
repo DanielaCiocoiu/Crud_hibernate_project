@@ -1,8 +1,8 @@
-package com.personalProject.Enterprise_employees_management_system.rest;
+package com.personalProject.Enterprise_employees_management_system.controller;
 
-import com.personalProject.Enterprise_employees_management_system.entity.Phone;
+import com.personalProject.Enterprise_employees_management_system.domain.Phone;
 import com.personalProject.Enterprise_employees_management_system.error.PhoneNotFoundException;
-import com.personalProject.Enterprise_employees_management_system.service.PhoneService;
+import com.personalProject.Enterprise_employees_management_system.service.phone.PhoneService;
 import org.springframework.http.HttpStatus;
 import org.springframework.web.bind.annotation.*;
 

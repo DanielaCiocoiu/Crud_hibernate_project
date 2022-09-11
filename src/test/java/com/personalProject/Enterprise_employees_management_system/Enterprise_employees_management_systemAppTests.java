@@ -1,6 +1,6 @@
 package com.personalProject.Enterprise_employees_management_system;
 
-import com.personalProject.Enterprise_employees_management_system.rest.EmployeeRestController;
+import com.personalProject.Enterprise_employees_management_system.controller.EmployeeRestController;
 import org.assertj.core.api.Assertions;
 import org.junit.jupiter.api.Test;
 import org.slf4j.Logger;

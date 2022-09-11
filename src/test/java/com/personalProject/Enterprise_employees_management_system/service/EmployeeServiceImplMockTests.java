@@ -1,7 +1,8 @@
 package com.personalProject.Enterprise_employees_management_system.service;
 
-import com.personalProject.Enterprise_employees_management_system.dao.EmployeeDAO;
-import com.personalProject.Enterprise_employees_management_system.entity.*;
+import com.personalProject.Enterprise_employees_management_system.domain.*;
+import com.personalProject.Enterprise_employees_management_system.service.employee.EmployeeDAO;
+import com.personalProject.Enterprise_employees_management_system.service.employee.EmployeeService;
 import org.junit.Ignore;
 import org.junit.jupiter.api.BeforeEach;
 import org.junit.jupiter.api.Test;

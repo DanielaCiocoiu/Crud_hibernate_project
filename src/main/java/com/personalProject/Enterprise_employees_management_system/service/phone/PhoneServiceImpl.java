@@ -1,7 +1,6 @@
-package com.personalProject.Enterprise_employees_management_system.service;
+package com.personalProject.Enterprise_employees_management_system.service.phone;
 
-import com.personalProject.Enterprise_employees_management_system.dao.PhoneDAO;
-import com.personalProject.Enterprise_employees_management_system.entity.Phone;
+import com.personalProject.Enterprise_employees_management_system.domain.Phone;
 import org.springframework.stereotype.Service;
 import org.springframework.transaction.annotation.Transactional;
 

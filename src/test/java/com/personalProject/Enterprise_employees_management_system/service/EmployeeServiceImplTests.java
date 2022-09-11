@@ -1,9 +1,10 @@
 package com.personalProject.Enterprise_employees_management_system.service;
 
-import com.personalProject.Enterprise_employees_management_system.dao.EmployeeDAO;
-import com.personalProject.Enterprise_employees_management_system.entity.Departament;
-import com.personalProject.Enterprise_employees_management_system.entity.Employee;
-import com.personalProject.Enterprise_employees_management_system.entity.EmployeeDetail;
+import com.personalProject.Enterprise_employees_management_system.domain.Departament;
+import com.personalProject.Enterprise_employees_management_system.domain.Employee;
+import com.personalProject.Enterprise_employees_management_system.domain.EmployeeDetail;
+import com.personalProject.Enterprise_employees_management_system.service.employee.EmployeeDAO;
+import com.personalProject.Enterprise_employees_management_system.service.employee.EmployeeService;
 import org.junit.jupiter.api.BeforeEach;
 import org.junit.jupiter.api.Test;
 import org.junit.jupiter.api.extension.ExtendWith;
