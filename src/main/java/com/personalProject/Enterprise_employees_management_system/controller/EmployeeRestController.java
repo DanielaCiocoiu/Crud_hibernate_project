@@ -7,6 +7,7 @@ import com.personalProject.Enterprise_employees_management_system.error.EmplyeeN
 import com.personalProject.Enterprise_employees_management_system.service.employee.EmployeeService;
 import org.springframework.cache.annotation.Cacheable;
 import org.springframework.http.HttpStatus;
+import org.springframework.security.core.Authentication;
 import org.springframework.web.bind.annotation.*;
 
 import java.util.List;
@@ -21,6 +22,19 @@ public class EmployeeRestController {
     public EmployeeRestController(EmployeeService employeeService) {
         this.employeeService = employeeService;
     }
+
+    // for security stuff
+    @GetMapping("/welcome")
+    public String welcome(Authentication authentication) {
+        return "Welcome,  " + authentication.getName() + "!";
+    }
+
+    @GetMapping("/anyOtherEndpoint")
+    public String anyOtherEndpoint() {
+        return "Denied";
+    }
+
+
 
     @GetMapping("/employees")
     @Cacheable(value = "cacheEmployees")
@@ -39,7 +53,7 @@ public class EmployeeRestController {
 
     //http://localhost:8080/api?departament=HR
     @GetMapping
-    public List<Employee> getEmployeeDepartamentWithRequestParam(@RequestParam(value="departament") Departament departament)  {
+    public List<Employee> getEmployeeDepartamentWithRequestParam(@RequestParam(value = "departament") Departament departament) {
 
         return employeeService.getEmployeeByDepartament(departament);
     }
@@ -53,7 +67,7 @@ public class EmployeeRestController {
     @ResponseStatus(HttpStatus.CREATED)
     public Employee addEmployee(@RequestBody Employee theEmployee) {
         theEmployee.setId(0);
-       employeeService.save(theEmployee);
+        employeeService.save(theEmployee);
         return theEmployee;
     }
 

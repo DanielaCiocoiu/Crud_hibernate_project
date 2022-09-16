@@ -6,6 +6,8 @@ REST clients for:
 • Update an employee
 • Delete an employee
 
+OneToOne BI
+OneToMany
 POST /api/employees Create a new employee
 GET /api/employees Read a list of employees
 GET /api/employees/{employeeId} Read a single employee
@@ -14,33 +16,29 @@ DELETE /api/employees/{employeeId} Delete an existing employee
 
 1.  Set up Database Dev Environment
 2.  Create Spring Boot project using Spring Initializr
-3.  Get list of employees
-4.  Get single employee by ID
-5.  Add a new employee
-6.  Update an existing employee
-7.  Delete an existing employee
+3.  CRUD for employees, employeesDetail, phones
 8.  Implementing  - Errors Handling
 9.  Implementing  - Actuators
 10. Implementing  - Unitary and Integration Test
+Implementing  OneToOne BI, OneToMany hibernate mapping
+RestTemplate read from: http://localhost:8080/api/employees;
 11  Caching  - TO DO
 12  Security - TO DO
 13  Advance Hibernate features - TO DO
-
+14 Find by user name TO DO
+15
 
 
 Rest controller-service-dao-mysql
 hibernate session factory
 
-
 EntityManager is similar to Hibernate SessionFactory
 • EntityManager can serve as a wrapper for a Hibernate Session object
-
 
 spring.jpa.properties.hibernate.format_sql=true
 #Prima linie înregistreaz? interog?rile SQL, iar a doua instruc?iune înregistreaz? parametrii instruc?iunii preg?tite.
 logging.level.org.hibernate.SQL=DEBUG
 logging.level.org.hibernate.type.descriptor.sql.BasicBinder=TRACE
-
 
 Development Process
 1. Create a custom error response class
@@ -50,11 +48,33 @@ Development Process
 
 
 {
-"firstName": "Ion",
-"lastName": "Mirestea",
-"email": "Ion@gmail.com",
-"departament": "IT",
-"dateOfBirth": "1979-10-05"
+   "firstName":"Maia",
+   "lastName":"Gaita",
+   "email":"maia@gmail.com",
+   "departament":"FINANCE",
+   "dateOfBirth":"1978-10-05T00:00:00.000+00:00",
+   "employeeDetail":{
+      "salary":2000,
+      "address":"Res"
+   },
+   "phones":[
+      {
+         "typePhone":"MOBILE",
+         "phoneNumber":722139456
+      },
+      {
+         "typePhone":"FIX_HOME",
+         "phoneNumber":21555777
+      },
+      {
+         "typePhone":"FIX_WORK",
+         "phoneNumber":125444556
+      },
+      {
+         "typePhone":"WORK_MOBILE",
+         "phoneNumber":71112222
+      }
+   ]
 }
 
 RestTemplate read from:
@@ -88,3 +108,17 @@ ALTER USER 'hbstudent'@'localhost' IDENTIFIED WITH mysql_native_password BY 'hbs
 to avoid app to enter in an infinite loop / infinite recursion Stackoverflow error.
 @JsonManagedReference
 @JsonBackReference
+------------
+http://localhost:8080/api/employees;
+http://localhost:8080/api/employeesDetail;
+http://localhost:8080/api/employees/{id};
+http://localhost:8080/api/employeesDetail/{id};
+http://localhost:8080/api/phones/{id};
+http://localhost:8080/api/phones;
+-------------
+Spring security
+Authentication.
+Authorization
+Password Storage
+Servlet Filters
+401 - api nu a stabilit autentificarea userului
